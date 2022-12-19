@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Abajo se encuentra el mensaje que se mostrará en la pestaña-->
+    <title>Mis primeros pasos</title>
+</head>
+<body>
+        <!--Creamos un div con el mismo nombre de la constante-->
+        <div id="app">
+        
+        <!--Referenciamos el mensaje de Vue llamado titulo-->
+        <h1>{{titulo}}</h1>
+        <!--Creamos una textbox, el v-model lleva una función-->
+        <!--El key.up hace que funcione el enter-->
+        <input type="text" v-model="nuevaFruta" @keyup.enter="agregarFruta">
+        <!--Con el @click, empieza el evento de agregar una fruta al array-->
+        <button @click="agregarFruta">Agregar</button>
+
+        <!--Comenzamos a crear una lista con viñetas-->
+        <ul>
+            <!--el v-for sirve como un for, fruta es un elemento del array frutas-->
+            <li v-for="fruta of frutas">
+                <!--Se muestra la cantidad y el nombre de la fruta-->
+                <input type="number" v-model.number="fruta.cantidad">
+                {{fruta.nombre}}
+                <!--Vamos a agregar un botón para sumar un stock-->
+                <button @click="fruta.cantidad++">+</button>
+                <button @click="fruta.cantidad--">-</button>
+                <!--Condicional que muestra un mensaje si existe stock-->
+            <span v-if="fruta.cantidad === 0">- Sin stock</span>
+            </li>
+        </ul>
+        <h4>TOTAL: {{sumarFrutas}}</h4>
+
+        </div>
+        <!--Librerías de Vue-->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+        <script src="01.js"></script>
+</body>
+</html>
